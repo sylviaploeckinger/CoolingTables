@@ -133,7 +133,7 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
                aspect = 'auto', vmin = cmin2, vmax = cmax2, cmap = 'RdBu')
 
     ax.autoscale(False)
-    ax.plot(neq, Teq, color = 'white', linestyle = '--', label = 'this work')
+    ax.plot(neq, Teq, color = 'white', linestyle = '--')
 
     cb = plt.colorbar(im,ax=ax, orientation='horizontal', pad = 0.2)
     cb.set_label('log $\Lambda / \Gamma$')
