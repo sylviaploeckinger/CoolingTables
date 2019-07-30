@@ -23,7 +23,7 @@ from tkinter import messagebox
 #####################################
 # Import local python files 
 #####################################
-from global_parameters import runname
+from global_parameters import runname, cwdpath
 from alldictnames import *
 from gui_Cool import gui_cooling_plots
 from gui_Heat import gui_heating_plots
@@ -45,8 +45,11 @@ filebase = sys.argv[1]
 #####################################
 # Create folder for plots
 #####################################
-if not os.path.exists(filebase+'/plots/'):
-    os.makedirs(filebase+'/plots/')
+# plots are stored in cwd/plots by default:
+print ("All plots will be stored in: ")
+print ("%s/plots"%(cwdpath))
+if not os.path.exists(cwdpath+'/plots/'):
+    os.makedirs(cwdpath+'/plots/')
 
 #####################################
 # Get bins of the cooling table 

@@ -12,3 +12,6 @@ filebase = sys.argv[1]
 ########################################################################################################
 runname_loc = [os.path.basename(x) for x in sorted(glob.glob('%s/*.hdf5'%(filebase)))]
 runname = [os.path.splitext(val)[0] for val in runname_loc]
+
+cwdpath = os.getcwd()
+
