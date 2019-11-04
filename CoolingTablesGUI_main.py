@@ -59,6 +59,8 @@ def loadparams():
     global MetallicityBins
     global TemperatureBins
     global DensityBins     
+    print (filebase)
+    print ("Reading: ", runname[irunselect])
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irunselect])
    
     with h5py.File(myhdf5file, "r") as f:
