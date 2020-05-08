@@ -21,7 +21,7 @@ def getfilenames(runnameloc, z, n, ZZ, iz, iZZ, idens, PlotType, shortstring):
     else:
         redstring = 'z=%4.1f, '%(z)
     
-    densstring = 'log n [cm$^{-3}$]=%4.1f, '%(n)
+    densstring = 'log n$_{\mathrm{H}}$ [cm$^{-3}$]=%4.1f, '%(n)
     
     if ZZ < -49.:
         metstring = 'log Z/Z$_{\odot}$=prim'

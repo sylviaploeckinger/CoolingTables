@@ -61,12 +61,12 @@ dict_names_simple = {'Cosmic ray rate'          : {'shortname':'CR',
                                                    'label'    :'log N$_{\mathrm{H}}$ [cm$^{-2}$]'},
                                                    
                      'Normalization column'     : {'shortname':'NHnorm',
-                                                   'name'     :'Reference column density', 
+                                                   'name'     :r'Reference column density N$_{\mathrm{ref}}$', 
                                                    'dset'     :'ShieldingColumnNorm', 
                                                    'label'    :'log N$_{\mathrm{H}}$ [cm$^{-2}$]'},
 
                      'Reference column'         : {'shortname':'NHref',
-                                                   'name'     :'Reference column density', 
+                                                   'name'     :r'Reference column density N$_{\mathrm{ref}}$', 
                                                    'dset'     :'ShieldingColumnRef', 
                                                    'label'    :'log N$_{\mathrm{H}}$ [cm$^{-2}$]'},
                                                    
@@ -242,8 +242,8 @@ dict_names_ionfrac = {'Ion fractions: H'         :{'shortname':'IonFracH',
                                                    'dset'     :'IonFractionsVol/10iron'}
                      }                      
 
-dict_names_elec    = {'Electron fractions'       :{'shortname':'ElecFrac',
-                                                   'name'     :'Electron fractions',
+dict_names_elec    = {'Free electron fractions'       :{'shortname':'ElecFrac',
+                                                   'name'     :'Free electron fractions',
                                                    'label'    :'log n$_{\mathrm{e}}$/n$_{\mathrm{H}}$',
                                                    'nrxpanels':'5',
                                                    'nrypanels':'3',

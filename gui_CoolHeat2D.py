@@ -89,7 +89,7 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
 
     fig = plt.figure()
     fig.suptitle(titlestring, fontsize = 12)
-    fig.subplots_adjust(left = 0.1, right = 0.95, bottom = 0.15, top = 0.85)
+    fig.subplots_adjust(left = 0.1, right = 0.95, bottom = 0.15, top = 0.90)
     gs = gridspec.GridSpec(1,3, wspace = 0.15, hspace = 0)
 
     ax = plt.subplot(gs[0])
@@ -138,12 +138,13 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     cb = plt.colorbar(im,ax=ax, orientation='horizontal', pad = 0.2)
     cb.set_label('log $\Lambda / \Gamma$')
 
+    '''
     handles, labels = ax.get_legend_handles_labels()
     l = ax.legend(handles, labels, loc=1, fontsize = 12)
     for text in l.get_texts():
         text.set_color("white")
     l.get_frame().set_facecolor('none')
-
+    '''
 
     fig.savefig(outputfile, dpi = 100)
     plt.close('all')

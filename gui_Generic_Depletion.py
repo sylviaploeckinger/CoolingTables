@@ -62,7 +62,7 @@ def gui_depletion_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
         MetallicityBins    = f['TableBins/MetallicityBins'].value
         TemperatureBins    = f['TableBins/TemperatureBins'].value
         DensityBins        = f['TableBins/DensityBins'].value
-        ElementNames       = f['ElementNames'].value
+        ElementNames       = f['ElementNamesShort'].value
             
 
         if PlotType == 0:         # constant density 
@@ -82,7 +82,7 @@ def gui_depletion_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
         if PlotType == 2:           # 2D
             Q = f['Tdep/'+PlotDict['dset']].value
             Q2D = Q[iz,:,iZZ,:,:]
-            
+            Nref = f['Tdep/ShieldingColumnRef'].value
             
     ymin = -7.8
     ymax =  0.5       
@@ -168,6 +168,9 @@ def gui_depletion_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
             im = ax.imshow(Q2D[:,:,iion], interpolation='none', origin='lower', \
                            extent = extent, \
                            aspect = 'auto', vmin = cmin, vmax = cmax, cmap = cmap)
+            ax.contour(DensityBins, TemperatureBins, Nref[iz, :, iZZ, :], levels=[20.56], \
+                                                   colors = 'white', linestyles = 'dashed', origin = 'lower', \
+                                                   linewidths = 2)
             ax.autoscale(False)
             
         ax = plt.subplot(gs1[0])

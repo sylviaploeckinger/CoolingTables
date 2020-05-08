@@ -52,7 +52,26 @@ plt.rc('legend', fontsize=VERYSMALL_SIZE)    # legend fontsize
 plt.rc('figure', titlesize=BIG_SIZE)  # fontsize of the figure title
 
 cmap2D = plt.cm.get_cmap('viridis')
-cmap = plt.cm.get_cmap('coolwarm')
+
+cmapo = plt.cm.get_cmap('coolwarm')
+cmapG = plt.cm.get_cmap('Greys')
+# pick the gray to interpolate to
+G = cmapG(0.5)
+
+N = 256
+N2 = int(N/2)
+vals = np.ones((N, 4))
+vals[0:N2, 0] = np.linspace(cmapo(0.)[0], G[0], N2)
+vals[0:N2, 1] = np.linspace(cmapo(0.)[1], G[1], N2)
+vals[0:N2, 2] = np.linspace(cmapo(0.)[2], G[2], N2)
+
+vals[N2:, 0] = np.linspace(G[0], cmapo(1.)[0], N2)
+vals[N2:, 1] = np.linspace(G[1], cmapo(1.)[1], N2)
+vals[N2:, 2] = np.linspace(G[2], cmapo(1.)[2], N2)
+
+from matplotlib.colors import ListedColormap
+cmap = ListedColormap(vals)
+
 props = dict(boxstyle='round', facecolor='white')
 
 ##########################################
@@ -107,7 +126,7 @@ def gui_ionfraction_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
             Q1D  = Q[iz,:,iZZ,idens,:]
             
         if PlotType == 1:          # Thermal equilibrium   
-            xlab = 'log n [cm$^{-3}$]'
+            xlab = 'log n$_{\mathrm{H}}$ [cm$^{-3}$]'
             ylab = PlotDict['label']
             xx   = DensityBins
             Q   = f['ThermEq/'+PlotDict['dset']].value
