@@ -204,6 +204,7 @@ def gui_heating_plots(irun,iz,iZZ,idens,iplottype, idisplay):
 
 
     handles, labels = ax.get_legend_handles_labels()
+    labels = [w.replace('Oatoms', 'OtherA') for w in labels]
     ax.legend(handles, labels, bbox_to_anchor=(0., 1.02, 1., .102), loc=3, mode = 'expand', borderaxespad=0., ncol = 2, fontsize = VERYSMALL_SIZE, handlelength = 4)
 
     fig.savefig(outputfile, dpi = 100)

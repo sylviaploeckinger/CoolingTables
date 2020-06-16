@@ -96,8 +96,11 @@ def gui_generic_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
 			   extent = extent, aspect = 'auto', vmin = 0, vmax = 1.)  
 		elif PlotDict['shortname'] == 'DG':
 				im = ax.imshow(Q[iz, :, iZZ, :], interpolation='none', origin='lower', \
-							   extent = extent, aspect = 'auto', vmin = -10., vmax = -2.)
-				stringlabel = "log Z/Z$_{\odot}$ = %.1f"%(MetallicityBins[iZZ])
+							 extent = extent, aspect = 'auto', vmin = -10., vmax = -2.)
+				if (MetallicityBins[iZZ] == int(MetallicityBins[iZZ])):
+					stringlabel = "log Z/Z$_{\odot}$ = %.0f"%(MetallicityBins[iZZ])
+				else:
+					stringlabel = "log Z/Z$_{\odot}$ = %.1f"%(MetallicityBins[iZZ])
 				ax.text(0.05, 0.95, stringlabel, transform=ax.transAxes, fontsize=14, \
 						 verticalalignment='top', horizontalalignment = 'left', bbox=props)
 				ax.contour(DensityBins, TemperatureBins, Nref[iz, :, iZZ, :], levels=[20.56], \
@@ -105,15 +108,18 @@ def gui_generic_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
 						   linewidths = 2)
 				ax.text(2., 4.2, 'N$_{\mathrm{ref}}$ = N$_{\mathrm{H,0}}$', color = 'white')
 		elif PlotDict['shortname'] == 'Rad':
-				 im = ax.imshow(Q[iz, :, iZZ, :], interpolation='none', origin='lower', \
+				im = ax.imshow(Q[iz, :, iZZ, :], interpolation='none', origin='lower', \
 							   extent = extent, aspect = 'auto', vmin = -3., vmax = 4.) 
-				 stringlabel = "z = %.1f"%(RedshiftBins[iz])
-				 ax.text(0.05, 0.95, stringlabel, transform=ax.transAxes, fontsize=14, \
+				if (RedshiftBins[iz] == int(RedshiftBins[iz])):
+					stringlabel = "z = %.0f"%(RedshiftBins[iz])
+				else:
+					stringlabel = "z = %.1f"%(RedshiftBins[iz])
+				ax.text(0.05, 0.95, stringlabel, transform=ax.transAxes, fontsize=14, \
 						 verticalalignment='top', horizontalalignment = 'left', bbox=props) 
-				 ax.contour(DensityBins, TemperatureBins, Nref[iz, :, iZZ, :], levels=[20.56], \
+				ax.contour(DensityBins, TemperatureBins, Nref[iz, :, iZZ, :], levels=[20.56], \
 						   colors = 'white', linestyles = 'dashed', origin = 'lower', \
 						   linewidths = 2)
-				 ax.text(2., 4.2, 'N$_{\mathrm{ref}}$ = N$_{\mathrm{H,0}}$', color = 'white')
+				ax.text(2., 4.2, 'N$_{\mathrm{ref}}$ = N$_{\mathrm{H,0}}$', color = 'white')
 		else:
 				im = ax.imshow(Q[iz, :, iZZ, :], interpolation='none', origin='lower', \
 							   extent = extent, aspect = 'auto')				   
@@ -126,12 +132,3 @@ def gui_generic_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
 
 	if idisplay == 1:
 		os.system("display %s &"%(outputfile))	  
-	
-	
-	
-	
-	
-	
-	
-	
-	
