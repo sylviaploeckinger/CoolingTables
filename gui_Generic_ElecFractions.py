@@ -193,12 +193,18 @@ def gui_elecfraction_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
         cax = divider.append_axes("right", size="200%", pad=0.05)
         cb  = plt.colorbar(im, cax=cax, orientation='vertical', ticks = np.arange(int(cmin)+1, cmax, 2.))
         cb.set_label('%s'%(PlotDict['label']))        
+
+    if idisplay == 1:
+        outputfile = "tmp.png"
     
     fig.savefig(outputfile, dpi = 100)
+    print('Plot saved as: %s'%(outputfile))
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))    
+        os.system("display %s &"%(outputfile))  
+    
+        
     
     
     

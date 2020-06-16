@@ -145,15 +145,15 @@ def gui_generic_3panelplots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
         handles, labels = ax.get_legend_handles_labels()
         ax.legend(handles, labels, loc=3, fontsize = 12)
     
+    if idisplay == 1:
+        outputfile = "tmp.png"
+    
     fig.savefig(outputfile, dpi = 100)
+    print('Plot saved as: %s'%(outputfile))
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))    
-    
-    
-    
-    
+        os.system("display %s &"%(outputfile))  
     
     
     

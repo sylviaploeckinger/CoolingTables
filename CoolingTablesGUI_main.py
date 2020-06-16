@@ -132,7 +132,7 @@ InfoFrame.grid_propagate(0)
 PlotFrame.grid_propagate(0)
 MainPlotFrame.grid_propagate(0)
 
-Slabel = Label(root, text="S. Ploeckinger (2019)")
+Slabel = Label(root, text="S. Ploeckinger (2020)")
 Slabel.place(rely=0.98, relx=0.98, x=0, y=0, anchor=SE)
 
 ############################################################################################
@@ -162,17 +162,17 @@ runvar.trace('w', change_dropdown)
 # 2. Select redshift 
 ############################################################################################
 indxred    = np.where(RedshiftBins < 49.)
-reionizvar = IntVar()
+#reionizvar = IntVar()
 
 lred     = Label(RedshiftFrame, text="2. Select redshift: z")
 if (len(indxred[0]) > 1):
     wred     = Scale(RedshiftFrame, from_=RedshiftBins[indxred[0][0]], to=RedshiftBins[indxred[0][-1]], length = sl, orient=HORIZONTAL, resolution = RedshiftBins[indxred[0][1]] - RedshiftBins[indxred[0][0]])
-cred     = Checkbutton(RedshiftFrame, text = "Before Reionization", variable = reionizvar)
+#cred     = Checkbutton(RedshiftFrame, text = "Before Reionization", variable = reionizvar)
 
 lred.grid(row = 1, column = 0, sticky = W)
 if (len(indxred[0]) > 1):
     wred.grid(row = 2, column = 0, sticky = E, padx = 50)
-cred.grid(row = 3, column = 0, sticky = W, pady = 20)
+#cred.grid(row = 3, column = 0, sticky = W, pady = 20)
 
 ############################################################################################
 # 3. Select metallicity 
@@ -225,26 +225,27 @@ def getsettings():
             imet  = (np.abs(MetallicityBins - (-50.))).argmin()
             tmet.set  ("Metallicity : primoridal")
             
-    if reionizvar.get():
-        ired = (np.abs(RedshiftBins - 50.)).argmin()
-        tred.set  ("Redshift    : before reioniz")
+    if (len(indxred[0]) > 1):
+        ired = (np.abs(RedshiftBins - wred.get())).argmin()
+        tred.set  ("Redshift    : %.2f [z]"%(RedshiftBins[ired]))
+    elif (len(indxred[0]) == 1):
+        ired = indxred[0][0]
+        tred.set  ("Redshift    : %.2f [z]"%(RedshiftBins[ired]))
     else:
-        if (len(indxred[0]) > 1):
-            ired = (np.abs(RedshiftBins - wred.get())).argmin()
-            tred.set  ("Redshift    : %.2f [z]"%(RedshiftBins[ired]))
-        elif (len(indxred[0]) == 1):
-            ired = indxred[0][0]
-            tred.set  ("Redshift    : %.2f [z]"%(RedshiftBins[ired]))
-        else:
-            ired = (np.abs(RedshiftBins - 50.)).argmin()
-            tred.set  ("Redshift    : before reioniz")            
+        ired = (np.abs(RedshiftBins - 50.)).argmin()
+        tred.set  ("Redshift    : before reioniz")            
         
     ttable.set("Table set   : %s"%(runname[irunselect]))
     tden.set  ("Density     : %.2f [log nH/cm-3]"%(DensityBins[iden]))
 
 
-def genericplots():
-    idisplay = 1
+def genericplots_display():
+    genericplots(idisplay = 1)
+
+def genericplots_save():
+    genericplots(idisplay = 0)
+
+def genericplots(idisplay):
     getsettings()
     SelectPlotTypeVar.get()
     iplottype = SelectPlotTypeVar.get()
@@ -310,15 +311,18 @@ pop2Menu.grid(row = 5, column = 0, sticky = W, padx = 0, pady = 10)
 plotvar.trace('w', change_dropdown2)
 
 SelectPlotTypeVar = IntVar()
-RB2D       = Radiobutton(MainPlotFrame, text="2D (for given metallicity, redshift)", variable=SelectPlotTypeVar, value=2)
+RB2D       = Radiobutton(MainPlotFrame, text="2D (for set metallicity, redshift)", variable=SelectPlotTypeVar, value=2)
 RBalongn   = Radiobutton(MainPlotFrame, text="1D (constant density)"               , variable=SelectPlotTypeVar, value=0)
 RBalongTeq = Radiobutton(MainPlotFrame, text="1D (equilibrium temperature)"        , variable=SelectPlotTypeVar, value=1)
 RBalongn.grid  (row = 7, column = 0, sticky = W, pady = 20)
 RBalongTeq.grid(row = 8, column = 0, sticky = W, pady = 20)
 RB2D.grid      (row = 6, column = 0, sticky = W, pady = 20)
 
-plotbutton  = Button(MainPlotFrame, text="Plot", command=genericplots, width = wb)
-plotbutton.grid(row = 9, column = 0, sticky = W)
+display_button  = Button(MainPlotFrame, text="Display", command=genericplots_display, width = wb)
+saveplot_button  = Button(MainPlotFrame, text="Save", command=genericplots_save, width = wb)
+
+display_button.grid(row = 9, column = 0, sticky = W)
+saveplot_button.grid(row = 9, column = 1, sticky = W)
 
 
 #####################################################

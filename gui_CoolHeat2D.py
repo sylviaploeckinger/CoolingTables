@@ -79,11 +79,6 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     titlestring, outputfile = getfilenames(runname[irun], RedshiftBins[iz], 0.0,\
                                              MetallicityBins[iZZ], iz, iZZ, 0, 2, 'CoolHeat2D')
     
-    print ('------------------------------------------------------------------')
-    print ('Outputfile: ')
-    print (outputfile)
-    print ('------------------------------------------------------------------')
-
     neq = DensityBins
     Teq = ThermEqT[iz,iZZ,:]
 
@@ -146,8 +141,12 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     l.get_frame().set_facecolor('none')
     '''
 
+    if idisplay == 1:
+        outputfile = "tmp.png"
+    
     fig.savefig(outputfile, dpi = 100)
+    print('Plot saved as: %s'%(outputfile))
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))
+        os.system("display %s &"%(outputfile))  

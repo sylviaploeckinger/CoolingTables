@@ -90,12 +90,6 @@ def gui_cooling_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     titlestring, outputfile = getfilenames(runname[irun], RedshiftBins[iz], DensityBins[idens],\
                                              MetallicityBins[iZZ], iz, iZZ, idens, iplottype, 'Cool')
     
-    print ('------------------------------------------------------------------')
-    print ('Outputfile: ')
-    print (outputfile)
-    print ('------------------------------------------------------------------')
-
-
     fig = plt.figure()
     fig.set_size_inches(10,6.2,forward=True)
     fig.suptitle(titlestring)
@@ -197,9 +191,13 @@ def gui_cooling_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     labels = [w.replace('Oatoms', 'OtherA') for w in labels]
     ax.legend(handles, labels, bbox_to_anchor=(0., 1.02, 1., .102), loc=3, mode = 'expand', borderaxespad=0., ncol = 2, fontsize = VERYSMALL_SIZE, handlelength = 4)
 
+    if idisplay == 1:
+        outputfile = "tmp.png"
+    
     fig.savefig(outputfile, dpi = 100)
+    print('Plot saved as: %s'%(outputfile))
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))
+        os.system("display %s &"%(outputfile))  
 

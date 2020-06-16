@@ -180,12 +180,15 @@ def gui_depletion_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
         cb  = plt.colorbar(im, cax=cax, orientation='vertical', ticks = np.arange(int(cmin)+1, cmax, 2.))
         cb.set_label('%s'%(PlotDict['label']))
     
+    if idisplay == 1:
+        outputfile = "tmp.png"
+    
     fig.savefig(outputfile, dpi = 100)
+    print('Plot saved as: %s'%(outputfile))
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))    
-    
+        os.system("display %s &"%(outputfile))  
     
     
     

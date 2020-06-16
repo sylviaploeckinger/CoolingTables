@@ -126,9 +126,13 @@ def gui_generic_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
 		ax.autoscale(False)
 		cb = plt.colorbar(im,ax=ax, orientation='vertical', pad = 0.1)
 		cb.set_label(PlotDict['label'])    
-	
-	fig.savefig(outputfile, dpi = 100)
-	plt.close('all')
 
 	if idisplay == 1:
-		os.system("display %s &"%(outputfile))	  
+		outputfile = "tmp.png"
+    
+	fig.savefig(outputfile, dpi = 100)
+	print('Plot saved as: %s'%(outputfile))
+	plt.close('all')
+    
+	if idisplay == 1:
+		os.system("display %s &"%(outputfile))  
