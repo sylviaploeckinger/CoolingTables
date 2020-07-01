@@ -104,7 +104,7 @@ def gui_heating_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     ax.set_ylim(ymin,ymax)
 
     ax.set_xlabel(xlab)
-    ax.set_ylabel('log $\Gamma$/$n_{\mathrm{H}}^2$ [erg cm$^{3}$ s$^{-1}$]')
+    ax.set_ylabel('log $\Lambda_{\mathrm{heat}}$/$n_{\mathrm{H}}^2$ [erg cm$^{3}$ s$^{-1}$]')
 
     ax.xaxis.set_ticks(np.arange(xx[0], xx[-2], 1.))
     ax.plot(xx, np.log10(np.power(10., Heat1D[..., -2]) + np.power(10., Heat1D[..., -1])), color = 'grey', lw = 2, label = 'Total')

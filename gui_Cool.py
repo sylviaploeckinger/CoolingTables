@@ -99,7 +99,7 @@ def gui_cooling_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     ax = plt.subplot(gs[0])
     ax.set_xlim(xmin,xmax)
     ax.set_ylim(ymin,ymax)
-    ax.set_ylabel('log $\Lambda$/$n_{\mathrm{H}}^2$ [erg cm$^{3}$ s$^{-1}$]')
+    ax.set_ylabel('log $\Lambda_{\mathrm{cool}}$/$n_{\mathrm{H}}^2$ [erg cm$^{3}$ s$^{-1}$]')
 
     ax.set_xlabel(xlab)
     ax.xaxis.set_ticks(np.arange(xx[0], xx[-2], 1.))

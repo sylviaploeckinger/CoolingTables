@@ -101,7 +101,7 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     ax.plot(neq, Teq, color = 'white', linestyle = '--')   
     
     cb = plt.colorbar(im,ax=ax, orientation='horizontal', pad = 0.2, ticks = np.arange(cmin, cmax, 5.))
-    cb.set_label('log $\Lambda$ \n[erg cm$^{-3}$ s$^{-1}$]')
+    cb.set_label('log $\Lambda_{\mathrm{cool}}$ \n[erg cm$^{-3}$ s$^{-1}$]')
 
     ax = plt.subplot(gs[1])
     ax.set_xlabel('log n$_{\mathrm{H}}$ [cm$^{-3}$]')
@@ -116,7 +116,7 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     ax.plot(neq, Teq, color = 'white', linestyle = '--')
 
     cb = plt.colorbar(im,ax=ax, orientation='horizontal', pad = 0.2, ticks = np.arange(cmin, cmax, 5.))
-    cb.set_label('log $\Gamma$ \n [erg cm$^{-3}$ s$^{-1}$]')
+    cb.set_label('log $\Lambda_{\mathrm{heat}}$ \n [erg cm$^{-3}$ s$^{-1}$]')
 
     ax = plt.subplot(gs[2])
     ax.set_xlabel('log n$_{\mathrm{H}}$ [cm$^{-3}$]')
@@ -131,7 +131,7 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     ax.plot(neq, Teq, color = 'white', linestyle = '--')
 
     cb = plt.colorbar(im,ax=ax, orientation='horizontal', pad = 0.2)
-    cb.set_label('log $\Lambda / \Gamma$')
+    cb.set_label('log $\Lambda_{\mathrm{cool}} / \Lambda_{\mathrm{heat}}$')
 
     '''
     handles, labels = ax.get_legend_handles_labels()
