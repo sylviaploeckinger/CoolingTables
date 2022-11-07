@@ -112,30 +112,30 @@ def write_roman(num):
 def gui_ionfraction_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irun])
     with h5py.File(myhdf5file, "r") as f:
-        RedshiftBins       = f['TableBins/RedshiftBins'].value
-        MetallicityBins    = f['TableBins/MetallicityBins'].value
-        TemperatureBins    = f['TableBins/TemperatureBins'].value
-        DensityBins        = f['TableBins/DensityBins'].value
+        RedshiftBins       = f['TableBins/RedshiftBins'][:]
+        MetallicityBins    = f['TableBins/MetallicityBins'][:]
+        TemperatureBins    = f['TableBins/TemperatureBins'][:]
+        DensityBins        = f['TableBins/DensityBins'][:]
             
 
         if PlotType == 0:         # constant density 
             xlab = 'log T [K]'
             ylab = PlotDict['label']
             xx   = TemperatureBins
-            Q = f['Tdep/'+PlotDict['dset']].value
+            Q = f['Tdep/'+PlotDict['dset']][:]
             Q1D  = Q[iz,:,iZZ,idens,:]
             
         if PlotType == 1:          # Thermal equilibrium   
             xlab = 'log n$_{\mathrm{H}}$ [cm$^{-3}$]'
             ylab = PlotDict['label']
             xx   = DensityBins
-            Q   = f['ThermEq/'+PlotDict['dset']].value
+            Q   = f['ThermEq/'+PlotDict['dset']][:]
             Q1D  = Q[iz,iZZ,:,:]
             
         if PlotType == 2:           # 2D
-            Q = f['Tdep/'+PlotDict['dset']].value
+            Q = f['Tdep/'+PlotDict['dset']][:]
             Q2D = Q[iz,:,iZZ,:,:]
-            Teq = f['ThermEq/Temperature'].value   
+            Teq = f['ThermEq/Temperature'][:]   
             
             
     ymin = -7.8

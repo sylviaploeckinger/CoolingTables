@@ -69,19 +69,19 @@ def gui_heating_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irun])
     with h5py.File(myhdf5file, "r") as f:
-        RedshiftBins       = f['TableBins/RedshiftBins'].value
-        MetallicityBins    = f['TableBins/MetallicityBins'].value
-        TemperatureBins    = f['TableBins/TemperatureBins'].value
-        DensityBins        = f['TableBins/DensityBins'].value
-        IdentifierHeating = f['IdentifierHeating'].value
+        RedshiftBins       = f['TableBins/RedshiftBins'][:]
+        MetallicityBins    = f['TableBins/MetallicityBins'][:]
+        TemperatureBins    = f['TableBins/TemperatureBins'][:]
+        DensityBins        = f['TableBins/DensityBins'][:]
+        IdentifierHeating = f['IdentifierHeating'][:]
             
         if iplottype == 0:
-            Heating = f['Tdep/Heating'].value
+            Heating = f['Tdep/Heating'][:]
             Heat1D  = Heating[iz, :, iZZ, idens, :]          
             xx      = TemperatureBins
             xlab    = 'log T [K]'
         else:
-            Heating = f['ThermEq/Heating'].value
+            Heating = f['ThermEq/Heating'][:]
             Heat1D  = Heating[iz, iZZ, :, :]
             xx      = DensityBins
             xlab    = 'log n [cm$^{-3}$]'

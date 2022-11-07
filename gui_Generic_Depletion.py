@@ -58,31 +58,31 @@ props = dict(boxstyle='round', facecolor='white')
 def gui_depletion_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irun])
     with h5py.File(myhdf5file, "r") as f:
-        RedshiftBins       = f['TableBins/RedshiftBins'].value
-        MetallicityBins    = f['TableBins/MetallicityBins'].value
-        TemperatureBins    = f['TableBins/TemperatureBins'].value
-        DensityBins        = f['TableBins/DensityBins'].value
-        ElementNames       = f['ElementNamesShort'].value
+        RedshiftBins       = f['TableBins/RedshiftBins'][:]
+        MetallicityBins    = f['TableBins/MetallicityBins'][:]
+        TemperatureBins    = f['TableBins/TemperatureBins'][:]
+        DensityBins        = f['TableBins/DensityBins'][:]
+        ElementNames       = f['ElementNamesShort'][:]
             
 
         if PlotType == 0:         # constant density 
             xlab = 'log T [K]'
             ylab = PlotDict['label']
             xx   = TemperatureBins
-            Q = f['Tdep/'+PlotDict['dset']].value
+            Q = f['Tdep/'+PlotDict['dset']][:]
             Q1D  = Q[iz,:,iZZ,idens,:]
             
         if PlotType == 1:          # Thermal equilibrium   
             xlab = 'log n [cm$^{-3}$]'
             ylab = PlotDict['label']
             xx   = DensityBins
-            Q   = f['ThermEq/'+PlotDict['dset']].value
+            Q   = f['ThermEq/'+PlotDict['dset']][:]
             Q1D  = Q[iz,iZZ,:,:]
             
         if PlotType == 2:           # 2D
-            Q = f['Tdep/'+PlotDict['dset']].value
+            Q = f['Tdep/'+PlotDict['dset']][:]
             Q2D = Q[iz,:,iZZ,:,:]
-            Nref = f['Tdep/ShieldingColumnRef'].value
+            Nref = f['Tdep/ShieldingColumnRef'][:]
             
     ymin = -7.8
     ymax =  0.5       

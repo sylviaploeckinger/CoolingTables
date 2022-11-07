@@ -64,10 +64,10 @@ def loadparams():
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irunselect])
    
     with h5py.File(myhdf5file, "r") as f:
-         RedshiftBins       = f['TableBins/RedshiftBins'].value
-         MetallicityBins    = f['TableBins/MetallicityBins'].value
-         TemperatureBins    = f['TableBins/TemperatureBins'].value
-         DensityBins        = f['TableBins/DensityBins'].value
+         RedshiftBins       = f['TableBins/RedshiftBins'][()]
+         MetallicityBins    = f['TableBins/MetallicityBins'][()]
+         TemperatureBins    = f['TableBins/TemperatureBins'][()]
+         DensityBins        = f['TableBins/DensityBins'][()]
          
 irunselect = 0
 loadparams()

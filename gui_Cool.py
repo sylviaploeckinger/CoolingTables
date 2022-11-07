@@ -68,18 +68,18 @@ def gui_cooling_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irun])
     with h5py.File(myhdf5file, "r") as f:
-        RedshiftBins       = f['TableBins/RedshiftBins'].value
-        MetallicityBins    = f['TableBins/MetallicityBins'].value
-        TemperatureBins    = f['TableBins/TemperatureBins'].value
-        DensityBins        = f['TableBins/DensityBins'].value
-        IdentifierCooling = f['IdentifierCooling'].value
+        RedshiftBins       = f['TableBins/RedshiftBins'][:]
+        MetallicityBins    = f['TableBins/MetallicityBins'][:]
+        TemperatureBins    = f['TableBins/TemperatureBins'][:]
+        DensityBins        = f['TableBins/DensityBins'][:]
+        IdentifierCooling = f['IdentifierCooling'][:]
         if iplottype == 0:
-            Cooling = f['Tdep/Cooling'].value
+            Cooling = f['Tdep/Cooling'][:]
             Cool1D  = Cooling[iz, :, iZZ, idens, :]         
             xx      = TemperatureBins
             xlab    = 'log T [K]'
         else:
-            Cooling = f['ThermEq/Cooling'].value
+            Cooling = f['ThermEq/Cooling'][:]
             Cool1D  = Cooling[iz, iZZ, :, :]
             xx      = DensityBins
             xlab    = 'log n [cm$^{-3}$]'

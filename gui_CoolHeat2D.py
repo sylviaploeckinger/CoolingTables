@@ -56,13 +56,13 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
 
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irun])
     with h5py.File(myhdf5file, "r") as f:
-        RedshiftBins       = f['TableBins/RedshiftBins'].value
-        MetallicityBins    = f['TableBins/MetallicityBins'].value
-        TemperatureBins    = f['TableBins/TemperatureBins'].value
-        DensityBins        = f['TableBins/DensityBins'].value
-        ThermEqT           = f['ThermEq/Temperature'].value
-        Heating = f['Tdep/Heating'].value
-        Cooling = f['Tdep/Cooling'].value
+        RedshiftBins       = f['TableBins/RedshiftBins'][:]
+        MetallicityBins    = f['TableBins/MetallicityBins'][:]
+        TemperatureBins    = f['TableBins/TemperatureBins'][:]
+        DensityBins        = f['TableBins/DensityBins'][:]
+        ThermEqT           = f['ThermEq/Temperature'][:]
+        Heating = f['Tdep/Heating'][:]
+        Cooling = f['Tdep/Cooling'][:]
     extent = (DensityBins[0], DensityBins[-1], TemperatureBins[0], TemperatureBins[-1])
 
     Heat2D = np.zeros_like(Heating[iz, :, iZZ, :, 0])

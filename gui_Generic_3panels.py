@@ -52,17 +52,17 @@ cmap = plt.cm.get_cmap('viridis')
 def gui_generic_3panelplots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
     myhdf5file = '%s/%s.hdf5'%(filebase, runname[irun])
     with h5py.File(myhdf5file, "r") as f:
-        RedshiftBins       = f['TableBins/RedshiftBins'].value
-        MetallicityBins    = f['TableBins/MetallicityBins'].value
-        TemperatureBins    = f['TableBins/TemperatureBins'].value
-        DensityBins        = f['TableBins/DensityBins'].value
+        RedshiftBins       = f['TableBins/RedshiftBins'][:]
+        MetallicityBins    = f['TableBins/MetallicityBins'][:]
+        TemperatureBins    = f['TableBins/TemperatureBins'][:]
+        DensityBins        = f['TableBins/DensityBins'][:]
    
         if PlotType == 1:   # Thermal Equilibrium
-            Q   = f['ThermEq/'+PlotDict['dset']].value
+            Q   = f['ThermEq/'+PlotDict['dset']][:]
         else:
-            Q = f['Tdep/'+PlotDict['dset']].value
+            Q = f['Tdep/'+PlotDict['dset']][:]
         if PlotType == 2:
-            Teq = f['ThermEq/Temperature'].value
+            Teq = f['ThermEq/Temperature'][:]
         
     Q1 = Q[...,0]
     Q2 = Q[...,1]
