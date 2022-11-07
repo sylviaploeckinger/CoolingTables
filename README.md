@@ -1,5 +1,5 @@
 # CoolingTables
-Graphical user interface to explore the CoolingTables from Ploeckinger et al (in prep.) 
+Graphical user interface to explore the CoolingTables from Ploeckinger & Schaye (2020) 
 
 Use this GUI by typing in the terminal:
 
