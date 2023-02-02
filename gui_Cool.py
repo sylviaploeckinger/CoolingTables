@@ -198,5 +198,5 @@ def gui_cooling_plots(irun,iz,iZZ,idens,iplottype, idisplay):
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))  
+        os.system("open %s &"%(outputfile))  
 

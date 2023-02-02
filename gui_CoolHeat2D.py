@@ -149,4 +149,4 @@ def gui_coolheat2D(irun, iz, iZZ, idisplay):
     plt.close('all')
 
     if idisplay == 1:
-        os.system("display %s &"%(outputfile))  
+        os.system("open %s &"%(outputfile))  

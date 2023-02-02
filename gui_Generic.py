@@ -135,4 +135,4 @@ def gui_generic_plots(irun, iz, iZZ, idens, PlotType, PlotDict, idisplay):
 	plt.close('all')
     
 	if idisplay == 1:
-		os.system("display %s &"%(outputfile))  
+		os.system("open %s &"%(outputfile))  
